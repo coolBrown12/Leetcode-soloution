@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_set<int> mpp(nums.begin(), nums.end());
+        
+        int longest_sequence = 0;
+        for (int num : nums) {
+            if (mpp.count(num - 1)) continue;
+            int current_length = 1;
+            while (mpp.count(num + 1)) {
+                num++;
+                current_length++;
+            }
+            longest_sequence = max(longest_sequence, current_length);
+        }
+        return longest_sequence;
+    }
+};
